@@ -44,13 +44,13 @@ TowersOfHanoi.sln
   - [x] `GetGameResult()` — returns disk count, move count, elapsed time, complete vs quit
 - [x] Move-validation logic (can't place larger on smaller)
 
-### Phase 3 – Unit tests (TowersOfHanoi.Core.Tests)
-- [ ] Test game initialisation (correct disk count on first tower)
-- [ ] Test valid moves
-- [ ] Test invalid moves (larger on smaller, empty tower)
-- [ ] Test win condition detection
-- [ ] Test game result reporting
-- [ ] Verify `dotnet test` passes
+### Phase 3 – Unit tests (TowersOfHanoi.Core.Tests) ✅
+- [x] Test game initialisation (correct disk count on first tower)
+- [x] Test valid moves
+- [x] Test invalid moves (larger on smaller, empty tower)
+- [x] Test win condition detection
+- [x] Test game result reporting
+- [x] Verify `dotnet test` passes (41 tests)
 
 ### Phase 4 – Console UI (TowersOfHanoi.Console)
 - [ ] **Start screen**
