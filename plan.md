@@ -33,17 +33,16 @@ TowersOfHanoi.sln
 - [x] Wire up project references (Console → Core, Tests → Core)
 - [x] Verify `dotnet build` succeeds
 
-### Phase 2 – Core library (TowersOfHanoi.Core)
-- [ ] `Disk` model (size, colour mapping)
-- [ ] `Tower` model (stack of disks, push/pop with validation)
-- [ ] `GameState` model (three towers, selected tower index, selected disk, move count, timer tracking, completion status)
-- [ ] `GameEngine` class:
-  - [ ] `NewGame(int diskCount)` — initialise towers with disks on leftmost peg
-  - [ ] `SelectDisk(int towerIndex)` — pick up top disk (toggle highlight)
-  - [ ] `MoveDisk(int fromTower, int toTower)` — validate & execute move
-  - [ ] `IsComplete()` — all disks on rightmost peg
-  - [ ] `GetGameResult()` — returns disk count, move count, elapsed time, complete vs quit
-- [ ] Move-validation logic (can't place larger on smaller)
+### Phase 2 – Core library (TowersOfHanoi.Core) ✅
+- [x] `Disk` model (size, colour mapping)
+- [x] `Tower` model (stack of disks, push/pop with validation)
+- [x] `GameEngine` class (towers, cursor, selection, move count, timer, completion)
+  - [x] `NewGame(int diskCount)` — initialise towers with disks on leftmost peg
+  - [x] `ToggleSelect()` — pick up / release top disk (toggle highlight)
+  - [x] `TryMoveDisk(int fromTower, int toTower)` — validate & execute move
+  - [x] `IsComplete()` — all disks on rightmost peg
+  - [x] `GetGameResult()` — returns disk count, move count, elapsed time, complete vs quit
+- [x] Move-validation logic (can't place larger on smaller)
 
 ### Phase 3 – Unit tests (TowersOfHanoi.Core.Tests)
 - [ ] Test game initialisation (correct disk count on first tower)
