@@ -10,7 +10,7 @@ dotnet build
 dotnet test
 
 # Run a single test by fully-qualified name
-dotnet test --filter "FullyQualifiedName~TowersOfHanoi.Core.Tests.ClassName.MethodName"
+dotnet test --filter "FullyQualifiedName~TowersOfHanoi.Core.Tests.GameEngineTests.IsComplete_AllDisksOnRightTower_ReturnsTrue"
 
 # Run tests matching a pattern
 dotnet test --filter "DisplayName~MoveDisk"
@@ -21,19 +21,24 @@ dotnet run --project src/TowersOfHanoi.Console
 
 ## Architecture
 
-This is a .NET 8 Towers of Hanoi game with a strict separation between logic and UI:
+A .NET 8 cross-platform (Windows/Linux) Towers of Hanoi game with strict separation between logic and UI:
 
-- **TowersOfHanoi.Core** (`src/TowersOfHanoi.Core/`) — Class library containing all game logic: models (`Disk`, `Tower`, `GameState`), move validation, and the `GameEngine`. This project must **never** reference `System.Console` or any UI concerns. Timer tracking uses `System.Diagnostics.Stopwatch`.
-- **TowersOfHanoi.Console** (`src/TowersOfHanoi.Console/`) — Console app that owns all rendering (ANSI box-drawing characters, colour-coded disks) and keyboard input. Consumes the Core library. References Core via `<ProjectReference>`.
-- **TowersOfHanoi.Core.Tests** (`tests/TowersOfHanoi.Core.Tests/`) — xUnit tests for the Core library. Tests cover move validation, win detection, and game state transitions.
+- **TowersOfHanoi.Core** — Class library with all game logic. Must **never** reference `System.Console` or any UI concerns.
+  - `GameEngine` — Central orchestrator: game state, cursor, selection, move validation, win detection, timing (`System.Diagnostics.Stopwatch`).
+  - `Tower` — Stack-based disk container enforcing the Hanoi rule (smaller on larger only) via `CanPlace()`.
+  - `Disk` — Immutable record with `Size` (1–9) and a `Color` property mapped to distinct `ConsoleColor` values.
+  - `GameResult` — DTO returned by `GameEngine.GetGameResult()` with disk count, move count, elapsed time, completion status.
 
-The game loop lives in the Console project: read a key → dispatch to `GameEngine` → re-render.
+- **TowersOfHanoi.Console** — Console app owning all rendering and input. References Core via `<ProjectReference>`.
+  - `Program.cs` — Entry point and game loop: start screen → key input → `GameEngine` dispatch → re-render → end screen.
+  - `GameRenderer` — Draws towers, colour-coded disks, cursor indicator (`▼`), and status bar using Unicode box-drawing characters (`║`, `═`, `╨`).
+  - `Screens` — Start screen (rules, controls, disk count prompt with validation) and end screen (results, optimal move comparison).
+
+- **TowersOfHanoi.Core.Tests** — xUnit tests (41 tests) covering move validation, win detection, game state transitions, and boundary conditions.
 
 ## Key Conventions
 
-- **Nullable reference types** are enabled across all projects (`<Nullable>enable</Nullable>`).
-- **Implicit usings** are enabled (`<ImplicitUsings>enable</ImplicitUsings>`).
-- The game supports **3–9 disks** (default 4). Validate this range in the Core library.
-- Disk sizes 1–9 each map to a distinct `ConsoleColor` for visual differentiation.
-- The display uses Unicode box-drawing characters (`║`, `═`, `╨`) — not plain ASCII.
-- Must run cross-platform on both Windows and Linux.
+- **Nullable reference types** and **implicit usings** are enabled across all projects.
+- Disk count range is **3–9** (default 4), validated in `GameEngine`.
+- Input model: arrow keys move the cursor; Space picks up/places a disk (toggle via `ToggleSelect()`); Esc cancels selection first (`CancelSelect()`), then quits.
+- The display uses Unicode box-drawing characters — not plain ASCII.
