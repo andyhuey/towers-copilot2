@@ -73,10 +73,10 @@ TowersOfHanoi.sln
   - [x] Display elapsed time
   - [x] Display complete vs quit status
 
-### Phase 5 – Integration & polish
-- [ ] End-to-end manual smoke test
-- [ ] Verify cross-platform: `dotnet run` works on Linux
-- [ ] Final `dotnet build` + `dotnet test` green
+### Phase 5 – Integration & polish ✅
+- [x] End-to-end manual smoke test
+- [x] Verify cross-platform: `dotnet run` works on Linux
+- [x] Final `dotnet build` + `dotnet test` green
 
 ---
 
