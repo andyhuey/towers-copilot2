@@ -112,6 +112,13 @@ public class GameEngine
             && Towers[TowerCount - 1].Count == DiskCount;
     }
 
+    public TimeSpan Elapsed => _stopwatch.Elapsed;
+
+    public void CancelSelect()
+    {
+        SelectedTowerIndex = null;
+    }
+
     public void Quit()
     {
         IsQuit = true;

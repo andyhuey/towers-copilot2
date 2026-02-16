@@ -52,26 +52,26 @@ TowersOfHanoi.sln
 - [x] Test game result reporting
 - [x] Verify `dotnet test` passes (41 tests)
 
-### Phase 4 – Console UI (TowersOfHanoi.Console)
-- [ ] **Start screen**
-  - [ ] Display game summary / rules
-  - [ ] Display control instructions
-  - [ ] Prompt for number of disks (default 4, min 3, max 9)
-- [ ] **Game screen**
-  - [ ] Render three towers with ANSI box-drawing characters
-  - [ ] Colour-code each disk size with a distinct `ConsoleColor`
-  - [ ] Highlight selected disk
-  - [ ] Show current tower cursor position
-  - [ ] Show move count and elapsed time
-- [ ] **Input handling**
-  - [ ] Left/Right arrow keys: move cursor between towers (no disk selected) or move disk (disk selected)
-  - [ ] Space bar: toggle disk selection / release
-  - [ ] Esc: quit game
-- [ ] **End screen**
-  - [ ] Display number of disks
-  - [ ] Display move count
-  - [ ] Display elapsed time
-  - [ ] Display complete vs quit status
+### Phase 4 – Console UI (TowersOfHanoi.Console) ✅
+- [x] **Start screen**
+  - [x] Display game summary / rules
+  - [x] Display control instructions
+  - [x] Prompt for number of disks (default 4, min 3, max 9)
+- [x] **Game screen**
+  - [x] Render three towers with ANSI box-drawing characters
+  - [x] Colour-code each disk size with a distinct `ConsoleColor`
+  - [x] Highlight selected disk
+  - [x] Show current tower cursor position
+  - [x] Show move count and elapsed time
+- [x] **Input handling**
+  - [x] Left/Right arrow keys: move cursor between towers
+  - [x] Space bar: toggle disk selection / release
+  - [x] Esc: cancel selection (if selected) or quit game
+- [x] **End screen**
+  - [x] Display number of disks
+  - [x] Display move count
+  - [x] Display elapsed time
+  - [x] Display complete vs quit status
 
 ### Phase 5 – Integration & polish
 - [ ] End-to-end manual smoke test
